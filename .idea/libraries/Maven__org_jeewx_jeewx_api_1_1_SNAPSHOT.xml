@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.jeewx:jeewx-api:1.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jeewx/jeewx-api/1.1-SNAPSHOT/jeewx-api-1.1-20170223.081500-6.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jeewx/jeewx-api/1.1-SNAPSHOT/jeewx-api-1.1-20170223.081500-6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jeewx/jeewx-api/1.1-SNAPSHOT/jeewx-api-1.1-20170223.081500-6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

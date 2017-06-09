@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.jeewxframework:P3-Core:2.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jeewxframework/P3-Core/2.1-SNAPSHOT/P3-Core-2.1-20160928.121701-16.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jeewxframework/P3-Core/2.1-SNAPSHOT/P3-Core-2.1-20160928.121701-16-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jeewxframework/P3-Core/2.1-SNAPSHOT/P3-Core-2.1-20160928.121701-16-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/P3-Biz-commonftb/P3-Biz-commonftb.iml" filepath="$PROJECT_DIR$/P3-Biz-commonftb/P3-Biz-commonftb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/P3-Biz-gzbargain/P3-Biz-gzbargain.iml" filepath="$PROJECT_DIR$/P3-Biz-gzbargain/P3-Biz-gzbargain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/P3-Biz-jiugongge/P3-Biz-jiugongge.iml" filepath="$PROJECT_DIR$/P3-Biz-jiugongge/P3-Biz-jiugongge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/P3-Biz-shaketicket/P3-Biz-shaketicket.iml" filepath="$PROJECT_DIR$/P3-Biz-shaketicket/P3-Biz-shaketicket.iml" />
+      <module fileurl="file://$PROJECT_DIR$/P3-Web/P3-Web.iml" filepath="$PROJECT_DIR$/P3-Web/P3-Web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/h5huodong.iml" filepath="$PROJECT_DIR$/.idea/h5huodong.iml" />
+    </modules>
+  </component>
+</project>

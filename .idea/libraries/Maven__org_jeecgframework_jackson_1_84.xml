@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.jeecgframework:jackson:1.84">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jeecgframework/jackson/1.84/jackson-1.84.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jeecgframework/jackson/1.84/jackson-1.84-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jeecgframework/jackson/1.84/jackson-1.84-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
