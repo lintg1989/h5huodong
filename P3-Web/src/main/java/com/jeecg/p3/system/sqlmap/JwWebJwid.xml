@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.system.entity.JwWebJwid">
+
+	<!-- Result Map-->
+	<resultMap id="JwWebJwid" type="com.jeecg.p3.system.entity.JwWebJwid" >
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="jwid" property="jwid" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="application_type" property="applicationType" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.jwid != null and query.jwid != ''" >
+	  		 		/* 公众号 */
+			    	AND jwj.jwid =  #{query.jwid,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.name != null and query.name != ''" >
+	  		 		/* 名称 */
+			    	AND jwj.name =  #{query.name,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.applicationType != null and query.applicationType != ''" >
+	  		 		/* 应用类型 */
+			    	AND jwj.application_type =  #{query.applicationType,jdbcType=VARCHAR}
+				 </if>
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.system.entity.JwWebJwid.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  jw_web_jwid   /* 微信公众号字典表 */  
+					(	
+                      id                            /*  */ 
+                     ,jwid                          /* 公众号原始id */ 
+                     ,name                          /* 公众号名称 */ 
+                     ,application_type              /* 应用类型 */ 
+					)
+			values (
+                      #{id,jdbcType=VARCHAR}                            /*  */ 
+                     ,#{jwid,jdbcType=VARCHAR}                          /* 公众号原始id */ 
+                     ,#{name,jdbcType=VARCHAR}                          /* 公众号名称 */ 
+                     ,#{applicationType,jdbcType=VARCHAR}               /* 应用类型 */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.system.entity.JwWebJwid.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   jw_web_jwid  	/* 微信公众号字典表 */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="jwid != null">
+		    		 		/* 公众号原始id */ 
+	    		 			jwid = #{jwid,jdbcType=VARCHAR},
+						 </if>
+						 <if test="name != null">
+		    		 		/* 公众号名称 */ 
+	    		 			name = #{name,jdbcType=VARCHAR},
+						 </if>
+						 <if test="applicationType != null">
+		    		 		/* 应用类型 */ 
+	    		 			application_type = #{applicationType,jdbcType=VARCHAR},
+						 </if>
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}		/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.system.entity.JwWebJwid.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="JwWebJwid">
+		   SELECT   
+                   jwj.id                            /*  */ 
+                  ,jwj.jwid                          /* 公众号原始id */ 
+                  ,jwj.name                          /* 公众号名称 */ 
+                  ,jwj.application_type              /* 应用类型 */ 
+		   FROM   jw_web_jwid      AS jwj      /* 微信公众号字典表 */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.system.entity.JwWebJwid.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM jw_web_jwid 	/*  */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.system.entity.JwWebJwid.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  jw_web_jwid      AS jwj      /*  */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.system.entity.JwWebJwid.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="JwWebJwid">
+		    SELECT 
+                   jwj.id                            /*  */ 
+                  ,jwj.jwid                          /* 公众号 */ 
+                  ,jwj.name                          /* 名称 */ 
+                  ,jwj.application_type              /* 应用类型 */ 
+		FROM   	 jw_web_jwid      AS jwj      /*  */ 
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+	<select id="queryJwids" parameterType="Object"  resultMap="JwWebJwid">
+		    SELECT 
+                   jwj.id                            /*  */ 
+                  ,jwj.jwid                          /* 公众号 */ 
+                  ,jwj.name                          /* 名称 */ 
+		FROM   	 jw_web_jwid      AS jwj      /*  */ 
+	</select>
+	<select id="queryJwidNameByJwid" parameterType="Object"  resultMap="JwWebJwid">
+		    SELECT 
+                   jwj.id                            /*  */ 
+                  ,jwj.jwid                          /* 公众号 */ 
+                  ,jwj.name                          /* 名称 */ 
+		FROM   	 jw_web_jwid      AS jwj      /*  */ 
+		WHERE 
+			jwj.jwid = #{value}
+	</select>
+	
+	<select id="queryJwWebJwidByUserId" parameterType="Object"  resultMap="JwWebJwid">
+		SELECT  distinct 
+                   jwj.id                            /*  */ 
+                  ,jwj.jwid                          /* 公众号 */ 
+                  ,jwj.name                          /* 名称 */ 
+		FROM   	jw_system_user_jwid      AS jsuj      /*  */ 
+		       ,jw_web_jwid      AS jwj 
+		where jsuj.jwid = jwj.jwid
+		     and jsuj.user_id = #{value}
+	
+	</select>
+	
+	<!--
+	方法名称: deleteUserJwidByUserid
+	调用路径: com.jeecg.p3.system.entity.JwWebJwid.deleteUserJwidByUserid
+	开发信息: 
+	处理信息: 根据用户编码删除用户和公众号的关联关系
+	-->
+	<delete id="deleteUserJwidByUserid" parameterType="Object" >
+		DELETE 	FROM jw_system_user_jwid 	/* 运营用户与角色 */ 
+		WHERE 
+			user_id = #{userId}		/* 用户编码 */ 
+	</delete>
+	
+	<!--
+	方法名称: queryJwidByJwidAndUserId
+	调用路径: com.jeecg.p3.system.entity.JwWebJwid.queryJwidByJwidAndUserId
+	开发信息: 
+	处理信息: 根据jwid和用户id查询微信公众号信息
+	-->
+	<select id="queryJwidByJwidAndUserId" parameterType="Object"  resultMap="JwWebJwid">
+		    SELECT 
+                   jwj.id                            /*  */ 
+                  ,jwj.jwid                          /* 公众号 */ 
+                  ,jwj.name                          /* 名称 */ 
+		FROM   	 jw_web_jwid      AS jwj      /*  */ 
+		left join jw_system_user_jwid      AS jsuj
+		on jwj.jwid  = jsuj.jwid
+		WHERE 
+			jwj.jwid = #{jwid}
+			and jsuj.user_id = #{userId}
+	</select>
+	
+	
+	<select id="queryJwidsNotInUser" parameterType="Object"  resultMap="JwWebJwid">
+		    SELECT 
+                   jwj.id                            /*  */ 
+                  ,jwj.jwid                          /* 公众号 */ 
+                  ,jwj.name                          /* 名称 */ 
+		FROM   	 jw_web_jwid      AS jwj      /*  */ 
+		where jwj.jwid not in 
+		(select jsuj.jwid from jw_system_user_jwid  AS jsuj 
+		  where jsuj.user_id = #{value}
+		)
+	</select>
+		<insert id="insertUserJwidRels" parameterType="Object" >
+	 	INSERT  INTO  jw_system_user_jwid(id,user_id,jwid)   /* 运营角色与权限表 */ 
+	 	VALUES (replace(uuid(),'-',''),#{userId},#{jwid})
+ 	</insert>
+</mapper>

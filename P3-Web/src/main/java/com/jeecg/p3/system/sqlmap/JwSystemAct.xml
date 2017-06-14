@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD iBatis Mapper 3.0 //EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.jeecg.p3.system.entity.JwSystemAct">
+
+	<!-- Result Map-->
+	<resultMap id="JwSystemAct" type="com.jeecg.p3.system.entity.JwSystemAct" >
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="act_code" property="actCode" jdbcType="VARCHAR"/>
+		<result column="act_name" property="actName" jdbcType="VARCHAR"/>
+		<result column="act_discribe" property="actDiscribe" jdbcType="VARCHAR"/>
+		<result column="jwid" property="jwid" jdbcType="VARCHAR"/>
+		<result column="creat_name" property="creatName" jdbcType="VARCHAR"/>
+		<result column="creat_time" property="creatTime" jdbcType="TIMESTAMP"/>
+		<result column="update_name" property="updateName" jdbcType="VARCHAR"/>
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+		<result column="jwname" property="jwidName" jdbcType="VARCHAR"/>
+		<result column="type" property="type" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- 查询条件 -->
+	<sql id="wherecontation">
+		<trim  suffixOverrides="," >
+				 <if test="query.actCode != null and query.actCode != ''" >
+	  		 		/* 活动项目编码 */
+			    	AND jsa.act_code =  #{query.actCode,jdbcType=VARCHAR}
+				 </if>
+				 <if test="query.actName != null and query.actName != ''" >
+	  		 		/* 活动名称 */
+			    	AND jsa.act_name =  #{query.actName,jdbcType=VARCHAR}
+				 </if>
+	  		 	/* 微信原始ID */
+			    AND jsa.jwid =  #{query.jwid,jdbcType=VARCHAR}
+	  		 	/* 活动类型 */
+			    AND jsa.type =  #{query.type,jdbcType=VARCHAR}
+		</trim>
+	</sql>
+
+	<!--
+	方法名称: insert
+	调用路径: com.jeecg.p3.system.entity.JwSystemAct.insert
+	开发信息: 
+	处理信息: 保存信息
+	-->
+	<insert id="insert" parameterType="Object" >
+	  INSERT  INTO  jw_system_act   /* 活动项目表 */  
+					(	
+                      id                            /* 主键 */ 
+                     ,act_code                      /* 活动项目编码 */ 
+                     ,act_name                      /* 活动名称 */ 
+                     ,act_discribe                  /* 活动描述 */ 
+                     ,jwid                          /* 微信原始ID */ 
+                     ,creat_name                    /* 创建人 */ 
+                     ,creat_time                    /* 创建时间 */ 
+                     ,update_name                   /* 修改人 */ 
+                     ,update_time                   /* 修改时间 */ 
+                     ,type                          /* 活动类型 */ 
+					)
+			values (
+                      #{id,jdbcType=VARCHAR}                            /* 主键 */ 
+                     ,#{actCode,jdbcType=VARCHAR}                       /* 活动项目编码 */ 
+                     ,#{actName,jdbcType=VARCHAR}                       /* 活动名称 */ 
+                     ,#{actDiscribe,jdbcType=VARCHAR}                   /* 活动描述 */ 
+                     ,#{jwid,jdbcType=VARCHAR}                          /* 微信原始ID */ 
+                     ,#{creatName,jdbcType=VARCHAR}                     /* 创建人 */ 
+                     ,now()                                             /* 创建时间 */ 
+                     ,#{updateName,jdbcType=VARCHAR}                    /* 修改人 */ 
+                     ,#{updateTime,jdbcType=TIMESTAMP}                    /* 修改时间 */ 
+                     ,#{type,jdbcType=VARCHAR}                    /* 活动类型 */ 
+					)
+	</insert>
+
+	
+	<!--
+	方法名称: update
+	调用路径: com.jeecg.p3.system.entity.JwSystemAct.update
+	开发信息: 
+	处理信息: 修改信息
+	-->  
+	 <update id="update" parameterType="Object" >
+	  UPDATE   jw_system_act  	/* 活动项目表 */
+	  			<trim   prefix="SET" suffixOverrides="," >
+						 <if test="actCode != null">
+		    		 		/* 活动项目编码 */ 
+	    		 			act_code = #{actCode,jdbcType=VARCHAR},
+						 </if>
+						 <if test="actName != null">
+		    		 		/* 活动名称 */ 
+	    		 			act_name = #{actName,jdbcType=VARCHAR},
+						 </if>
+						 <if test="actDiscribe != null">
+		    		 		/* 活动描述 */ 
+	    		 			act_discribe = #{actDiscribe,jdbcType=VARCHAR},
+						 </if>
+						 <if test="updateName != null">
+		    		 		/* 修改人 */ 
+	    		 			update_name = #{updateName,jdbcType=VARCHAR},
+						 </if>
+		    		 		/* 修改时间 */ 
+	    		 			update_time = now(),
+	    		 			type = #{type,jdbcType=VARCHAR},
+	  	  		</trim>
+				WHERE
+	  	 		 		id = #{id}		/* 序号 */ 
+	 </update>
+	
+	<!--
+	方法名称: get
+	调用路径: com.jeecg.p3.system.entity.JwSystemAct.get
+	开发信息: 
+	处理信息: 根据主键查询记录
+	-->
+	<select id="get" parameterType="Object"  resultMap="JwSystemAct">
+		   SELECT   
+                   jsa.id                            /* 主键 */ 
+                  ,jsa.act_code                      /* 活动项目编码 */ 
+                  ,jsa.act_name                      /* 活动名称 */ 
+                  ,jsa.act_discribe                  /* 活动描述 */ 
+                  ,jsa.jwid                          /* 微信原始ID */ 
+                  ,jsa.creat_name                    /* 创建人 */ 
+                  ,jsa.creat_time                    /* 创建时间 */ 
+                  ,jsa.update_name                   /* 修改人 */ 
+                  ,jsa.update_time                   /* 修改时间 */ 
+                  ,jsa.type                   /* 修改时间 */ 
+		   FROM   jw_system_act      AS jsa      /* 活动项目表 */ 
+		   WHERE
+				id = #{id}				/* 序号 */ 
+	</select>
+	
+	<!--
+	方法名称: delete
+	调用路径: com.jeecg.p3.system.entity.JwSystemAct.delete
+	开发信息: 
+	处理信息: 删除记录
+	-->
+	<delete id="delete" parameterType="Object">
+		DELETE 	FROM jw_system_act 	/* 活动项目表 */  
+		WHERE 
+			id = #{id}					/* 序号 */ 
+	</delete>
+	
+	<!--
+	方法名称: count
+	调用路径: com.jeecg.p3.system.entity.JwSystemAct.count
+	开发信息: 
+	处理信息: 列表总数
+	-->
+	<select id="count" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT count(*)  FROM  jw_system_act      AS jsa      /* 活动项目表 */ 
+		 WHERE 1=1
+		    <include refid="wherecontation"/>
+	</select>
+  	
+  	<!--
+	方法名称: queryPageList
+	调用路径: com.jeecg.p3.system.entity.JwSystemAct.queryPageList
+	开发信息: 
+	处理信息: 列表
+	-->
+	<select id="queryPageList" parameterType="Object"  resultMap="JwSystemAct">
+		    SELECT 
+                   jsa.id                            /* 主键 */ 
+                  ,jsa.act_code                      /* 活动项目编码 */ 
+                  ,jsa.act_name                      /* 活动名称 */ 
+                  ,jsa.act_discribe                  /* 活动描述 */ 
+                  ,jsa.jwid                          /* 微信原始ID */ 
+                  ,jsa.creat_name                    /* 创建人 */ 
+                  ,jsa.creat_time                    /* 创建时间 */ 
+                  ,jsa.update_name                   /* 修改人 */ 
+                  ,jsa.update_time                   /* 修改时间 */ 
+                  ,jsa.type                   /* 修改时间 */ 
+                  ,jwj.name as jwname
+		FROM   	 jw_system_act      AS jsa      /* 活动项目表 */ 
+		LEFT JOIN jw_web_jwid      AS jwj
+		ON jsa.jwid=jwj.jwid
+		WHERE 1=1
+		   <include refid="wherecontation"/>
+		LIMIT  #{startRow}  		/* 开始序号 */ 
+			  ,#{pageSize}		/* 每页显示条数 */ 
+	</select>
+
+</mapper>
